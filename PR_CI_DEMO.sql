@@ -5,7 +5,7 @@ CREATE OR REPLACE PROCEDURE pr_ci_demo
 BEGIN
   --UPDATE emp_demo SET salary = (salary * 0.002) + salary WHERE last_name = vlast_name;
   
-  UPDATE emp_demo SET commission_pct = 0.02 WHERE commission_pct IS NULL;
+  UPDATE emp_demo SET commission_pct = 0.02  WHERE last_name = vlast_name;
   
   COMMIT;
   EXCEPTION WHEN OTHERS
