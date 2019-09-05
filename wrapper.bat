@@ -1,3 +1,7 @@
-CONNECT hr/hr@localhost:1521
+@"
+  CONNECT hr/hr@localdb
 
-drop table emp_demo;
+  drop table emp_demo;
+
+  EXIT;
+"@ | sqlplus.exe /nolog
