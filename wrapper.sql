@@ -1,4 +1,4 @@
 
-create table emp_demo as select * from employees;
+exec PR_CI_DEMO('King');
 
 exit;
