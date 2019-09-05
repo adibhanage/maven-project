@@ -1,3 +1,4 @@
-create table t1(c1 int);
-drop table t1;
+
+create table emp_demo as select * from employees;
+
 exit;
