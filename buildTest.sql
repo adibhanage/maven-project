@@ -1,6 +1,4 @@
-set serveroutput on;
 
 exec ut.run(ut_documentation_reporter(), a_color_console=>true);
 
 EXIT;
-/
