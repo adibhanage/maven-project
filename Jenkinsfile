@@ -1,9 +1,6 @@
 pipeline
 {
-  agent
-  {
-    label 'master_builds'
-  }
+  agent any
 
   stages
   {
