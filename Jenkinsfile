@@ -23,9 +23,7 @@ pipeline
             when { anyOf { branch 'utplsql_demo'; branch 'project-branch'; branch 'development' } }
             steps
             {
-              step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', customOracleHome: 'C:\Oracle\Middleware\Oracle_Homer', 
-              customSQLPlusHome: 'C:\Oracle\Middleware\Oracle_Home\bin\sqlplus', customTNSAdmin: 'C:\Oracle\Middleware\Oracle_Home\network\admin', 
-              instance: 'DEVC.uk.esure.com', script: 'run.sql', scriptContent: '', scriptType: 'file'])
+              step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', instance: 'DEVC.uk.esure.com', script: 'run.sql', scriptContent: '', scriptType: 'file'])
             }
         }
   }
