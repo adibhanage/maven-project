@@ -7,31 +7,24 @@ pipeline
 
   stages
   {
-        stage ('Slack Notifier')
-        {
-            steps
-            {
-                build 'slack-integration-notifier'
-            }
-        }
         stage ('Checkout code from Git')
         {
             steps
             {
                 dir ('depscripts')
                 {
-                    git branch: 'master', credentialsId: 'jenkins-ci-git-ssh', url: 'git@github.com:esure-dev/ci-db-project.git'
+                    git branch: 'utplsql_demo', credentialsId: 'jenkins-ci-git-ssh', url: 'https://github.com/adibhanage/maven-project.git'
                     echo 'Checkout Deployment Scripts from Git stage done...'
                 }
             }
         }
         stage ('SQL Script Runner')
         {
-            when { anyOf { branch 'master'; branch 'project-branch'; branch 'development' } }
+            when { anyOf { branch 'utplsql_demo'; branch 'project-branch'; branch 'development' } }
             steps
             {
-              step([$class: 'SQLPlusRunnerBuilder', credentialsId: '49526e25-b68b-40cf-a84e-d412e7f8ee84', customOracleHome: '/usr/lib/oracle/19.3/client64', 
-              customSQLPlusHome: '/usr/lib/oracle/19.3/client64/bin/sqlplus', customTNSAdmin: '/usr/lib/oracle/19.3/client64/lib/network/admin', 
+              step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', customOracleHome: 'C:\Oracle\Middleware\Oracle_Homer', 
+              customSQLPlusHome: 'C:\Oracle\Middleware\Oracle_Home\bin\sqlplus', customTNSAdmin: 'C:\Oracle\Middleware\Oracle_Home\network\admin', 
               instance: 'DEVC.uk.esure.com', script: 'tut.sql', scriptContent: '', scriptType: 'file'])
             }
         }
