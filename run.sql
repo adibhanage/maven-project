@@ -1,0 +1,1 @@
+select 'Hello , today is ' || to_char(sysdate, 'ddth Month yyyy') from dual;
