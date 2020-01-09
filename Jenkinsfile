@@ -1,9 +1,9 @@
 pipeline {
-    agent any 
+    agent any
     stages {
         stage ('Checkout code from Git')
         {
-            steps 
+            steps
             {
                 dir ('depscripts')
                 {
@@ -12,13 +12,13 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Greetings') {
             steps {
-                echo 'Hello, deployment is in progress...' 
+                echo 'Hello, deployment is in progress...'
             }
         }
-        
+
         stage ('SQL Script Runner') {
                 steps
                 {
@@ -28,7 +28,17 @@ pipeline {
     }
     post {
             success {
-                        echo 'Deployment completed successfuly'
+                        echo 'Deployment is successful.'
+                    }
+            failure {
+                        echo 'Some Failure'
+                    }
+            unstable {
+                        echo 'Unstable release'
+                     }
+            changed {
+                        echo 'Something has changed'
+                        echo 'but its now successful; ready for specific action.'
                     }
         }
 }
