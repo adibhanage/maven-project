@@ -69,20 +69,23 @@ pipeline {
     }
     post {
             always {
-            junit 'TUTResult.xml'
+            echo 'Read test result'
             }
             success {
-                        echo 'Deployment is successful on ${DB_ENGINE}'
+                    echo 'Deployment is successful on ${DB_ENGINE}'
+                    slackSend channel: '#ci-db',
+                        color: 'good',
+                        message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
             }
             failure {
-                        echo 'Some Failure'
+                    echo 'Some Failure'
             }
             unstable {
-                        echo 'Unstable release'
+                    echo 'Unstable release'
             }
             changed {
-                        echo 'Something has changed'
-                        echo 'but its now successful; ready for specific action if any.'
+                    echo 'Something has changed'
+                    echo 'but its now successful; ready for specific action if any.'
             }
         }
 }
