@@ -8,7 +8,7 @@ pipeline {
     }
 
     stages {
-        stage ('Checkout code from Git branch %GIT_BRANCH%')
+        stage ('Checkout code from Git branch ${GIT_BRANCH}')
         {
             steps
             {
@@ -23,7 +23,6 @@ pipeline {
         stage('Greetings') {
             steps {
                 echo 'Hello, deployment is in progress...'
-                bat set
             }
         }
 
