@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DISABLE_AUTH = 'false'
-        DB_ENGINE    = 'devc'
+       // DISABLE_AUTH = 'false'
+       // DB_ENGINE    = 'devc'
         GIT_BRANCH   = 't185287'
     }
 
