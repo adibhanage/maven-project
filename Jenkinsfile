@@ -47,10 +47,10 @@ pipeline {
                 }
         }
 
-         stage ('Postcheck Build') {
+         stage ('Precheck TUT') {
                 steps
                 {
-                  step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', instance: 'DEVC.uk.esure.com', script: 'postrun.sql', scriptContent: '', scriptType: 'file'])
+                  echo 'TUT case(s) present'
                 }
         }
     }
