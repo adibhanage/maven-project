@@ -27,4 +27,9 @@ pipeline {
                 }
         }
     }
+    post {
+            success {
+                        echo 'Deployment completed successfuly'
+                    }
+        }
 }
