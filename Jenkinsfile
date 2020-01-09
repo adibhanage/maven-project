@@ -8,10 +8,12 @@ pipeline {
     }
 
     stages {
-        stage ('Checkout code from Git branch ${GIT_BRANCH}')
+        stage ('Checkout')
         {
             steps
             {
+                echo  "Git Branch : ${GIT_BRANCH}"
+                
                 dir ('depscripts')
                 {
                     git branch: 'utplsql_demo', credentialsId: 'jenkins-ci-git-ssh', url: 'https://github.com/adibhanage/maven-project.git'
