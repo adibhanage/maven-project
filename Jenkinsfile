@@ -79,13 +79,22 @@ pipeline {
             }
             failure {
                     echo 'Some Failure'
+                    slackSend channel: '#ci-db',
+                        color: 'red',
+                        message: "The pipeline ${currentBuild.fullDisplayName} completed with some Failure."
             }
             unstable {
                     echo 'Unstable release'
+                    slackSend channel: '#ci-db',
+                        color: 'orange',
+                        message: "The pipeline ${currentBuild.fullDisplayName} completed with unstable."
             }
             changed {
                     echo 'Something has changed'
                     echo 'but its now successful; ready for specific action if any.'
+                    slackSend channel: '#ci-db',
+                        color: 'good',
+                        message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
             }
         }
 }
