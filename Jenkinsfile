@@ -16,7 +16,7 @@ pipeline {
         stage('Greetings') {
             steps {
                 echo 'Hello, deployment is in progress...'
-                echo 'printenv'
+                bat 'printenv'
             }
         }
 
