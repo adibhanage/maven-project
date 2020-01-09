@@ -53,20 +53,36 @@ pipeline {
                   echo 'TUT case(s) present'
                 }
         }
+
+        stage ('Executing TUT') {
+                steps
+                {
+                  echo 'TUT case(s) present'
+                }
+        }
+        stage ('Compiling TUT Result') {
+                steps
+                {
+                  echo 'TUT result found. Publishing TUT report.'
+                }
+        }
     }
     post {
+            always {
+            junit 'TUTResult.xml'
+            }
             success {
                         echo 'Deployment is successful on ${DB_ENGINE}'
-                    }
+            }
             failure {
                         echo 'Some Failure'
-                    }
+            }
             unstable {
                         echo 'Unstable release'
-                     }
+            }
             changed {
                         echo 'Something has changed'
                         echo 'but its now successful; ready for specific action if any.'
-                    }
+            }
         }
 }
