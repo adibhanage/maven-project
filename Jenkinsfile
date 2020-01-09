@@ -1,7 +1,14 @@
 pipeline {
     agent any
+
+    environment {
+        DISABLE_AUTH = 'false'
+        DB_ENGINE    = 'devc'
+        GIT_BRANCH   = 't185287'
+    }
+
     stages {
-        stage ('Checkout code from Git')
+        stage ('Checkout code from Git branch %GIT_BRANCH%')
         {
             steps
             {
@@ -16,7 +23,7 @@ pipeline {
         stage('Greetings') {
             steps {
                 echo 'Hello, deployment is in progress...'
-                bat printenv
+                bat set
             }
         }
 
