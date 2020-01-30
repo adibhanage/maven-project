@@ -5,7 +5,7 @@ pipeline {
 agent any
     stages {
         stage('Example') {
-            steps {
+            step {
                 if (ifTUT == 1) {
                     echo 'OK'
                 } else {
