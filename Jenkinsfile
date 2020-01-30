@@ -1,25 +1,16 @@
-def TUT = 0
+def ifTUT = 1
 
 pipeline {
-    agent any
-    triggers {
-        //Query repository weekdays every four hours starting at minute 0
-        pollSCM('* * * * 1-5')
-        }
-        stages {
-                    if (TUT == 1)
-                        {
-                        echo "TUT OK"
-                            stage('Build') {
-                                echo "Build"
-                            }
-                        }
-                    else
-                        {
-                        echo "NOT OK"
-                            stage('Build') {
-                                    echo "Build"
-                                }
-                        }
-        }
+
+agent any
+        if (ifTUT == 1) {
+    		stages {
+                stage('Example') { steps { echo 'OK' } }
+		}
+	}
+        else {
+		stages {
+            	stage('Example') { steps {echo 'Not OK' } }
+        	}
+	}
 }
