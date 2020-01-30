@@ -8,7 +8,7 @@ pipeline {
         }
         stages {
             stage('Build') {
-                when { TUT = 1 }
+                when { not {TUT = 1} }
         }
         steps {
             echo 'Executing TUT'
