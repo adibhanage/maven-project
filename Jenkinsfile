@@ -7,17 +7,22 @@ pipeline {
         pollSCM('* * * * 1-5')
         }
         stages {
-            stage('Build') {
+            
                 script{
                     if (TUT == 1)
                         {
                         echo "TUT OK"
+                            stage('Build') {
+                                echo "Build"
+                            }
                         }
                     else
                         {
                         echo "NOT OK"
+                            stage('Build') {
+                                    echo "Build"
+                                }
                         }
                   }
         }
-    }
 }
