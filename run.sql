@@ -1,1 +1,1 @@
-select * from dual;
+select "Hello World!" from dual;
