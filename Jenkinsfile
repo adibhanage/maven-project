@@ -8,10 +8,16 @@ pipeline {
         }
         stages {
             stage('Build') {
-                when { not {TUT = 1} }
-        }
-        steps {
-            echo 'Executing TUT'
+                script{
+                    if (TUT == 1)
+                        {
+                        echo "TUT OK"
+                        }
+                    else
+                        {
+                        echo "NOT OK"
+                        }
+                  }
         }
     }
 }
