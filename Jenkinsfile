@@ -5,11 +5,13 @@ pipeline {
 agent any
     stages {
         stage('Example') {
-            if (ifTUT == 1) {
-                echo 'OK'
-            } else {
-                echo 'Not OK'
-                }
+            steps {
+                if (ifTUT == 1) {
+                    echo 'OK'
+                } else {
+                    echo 'Not OK'
+                    }
+            }
         }
     }
 }
