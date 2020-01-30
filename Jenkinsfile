@@ -1,14 +1,13 @@
-def ifTUT = 1
-
 pipeline {
-
-agent any
+    agent any
     stages {
-        if (ifTUT == 1) {
-            stage('Example') { steps { echo 'OK' } }
-        }
-        else {
-            stage('Example') { steps {echo 'Not OK' } }
+        stage('Build') {
+            steps {
+                sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                '''
+            }
         }
     }
 }
