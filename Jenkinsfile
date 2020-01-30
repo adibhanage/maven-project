@@ -1,9 +1,13 @@
+def TUT = 0
+
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                echo "Hello World"
+        if (TUT == 1) {
+            stage('Build') {
+                steps {
+                    echo "Hello World"
+                }
             }
         }
     }
