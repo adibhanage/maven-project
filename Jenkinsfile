@@ -4,18 +4,11 @@ pipeline {
 
 agent any
     stages {
-        stage('Example') {
-                if (ifTUT == 1) {
-                    steps
-                    {
-                      echo 'OK'
-                    }
-                } else {
-                    steps
-                    {
-                      echo 'Not OK'
-                    }
-                    }
+        if (ifTUT == 1) {
+            stage('Example') { steps { echo 'OK' } }
+        }
+        else {
+            stage('Example') { steps {echo 'Not OK' } }
         }
     }
 }
