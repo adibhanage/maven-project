@@ -1,100 +1,19 @@
 pipeline {
-    agent any
 
-    environment {
-       // DISABLE_AUTH = 'false'
-        DB_ENGINE    = 'devc'
-        GIT_BRANCH   = 't185287'
-    }
-
+agent any
     stages {
-        stage ('Checkout')
-        {
-            steps
-            {
-                dir ('depscripts')
-                {
-                    git branch: 'utplsql_demo', credentialsId: 'jenkins-ci-git-ssh', url: 'https://github.com/adibhanage/maven-project.git'
-                    echo 'DONE: Checkout Deployment Scripts from Git branch ${GIT_BRANCH}'
-                }
-            }
-        }
-
-        stage('Greetings') {
+        stage('Example Build') {
             steps {
-                echo 'Hello, deployment is in progresson ${DB_ENGINE}'
+                echo 'Hello World'
             }
         }
-
-        stage ('Precheck Build') {
-                steps
-                {
-                  step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', instance: 'DEVC.uk.esure.com', script: 'prerun.sql', scriptContent: '', scriptType: 'file'])
-                }
-        }
-
-        stage ('Apply Build') {
-                steps
-                {
-                  step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', instance: 'DEVC.uk.esure.com', script: 'buildrun.sql', scriptContent: '', scriptType: 'file'])
-                }
-        }
-        
-        stage ('Postcheck Build') {
-                steps
-                {
-                  step([$class: 'SQLPlusRunnerBuilder', credentialsId: '823ee684-904e-4f9c-83cb-77128f4e1575', instance: 'DEVC.uk.esure.com', script: 'postrun.sql', scriptContent: '', scriptType: 'file'])
-                }
-        }
-
-         stage ('Precheck TUT') {
-                steps
-                {
-                  echo 'TUT case(s) present'
-                }
-        }
-
-        stage ('Executing TUT') {
-                steps
-                {
-                  echo 'TUT case(s) present'
-                }
-        }
-        stage ('Compiling TUT Result') {
-                steps
-                {
-                  echo 'TUT result found. Publishing TUT report.'
-                }
+        stage('Example Deploy') {
+            when {
+                triggeredBy "SCMTrigger"
+            }
+            steps {
+                echo 'Deploying'
+            }
         }
     }
-    post {
-            always {
-            echo 'Read test result'
-            }
-            success {
-                    echo 'Deployment is successful on ${DB_ENGINE}'
-                    slackSend channel: '#ci-db',
-                        color: 'good',
-                        message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
-            }
-            failure {
-                    echo 'Some Failure'
-                    slackSend channel: '#ci-db',
-                        color: 'red',
-                        message: "The pipeline ${currentBuild.fullDisplayName} completed with some Failure."
-            }
-            unstable {
-                    echo 'Unstable release'
-                    slackSend channel: '#ci-db',
-                        color: 'orange',
-                        message: "The pipeline ${currentBuild.fullDisplayName} completed with unstable."
-            }
-            changed {
-                    echo 'Something has changed'
-                    echo 'but its now successful; ready for specific action if any.'
-                    slackSend channel: '#ci-db',
-                        color: 'good',
-                        message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
-            }
-        }
 }
