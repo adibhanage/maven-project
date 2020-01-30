@@ -7,8 +7,6 @@ pipeline {
         pollSCM('* * * * 1-5')
         }
         stages {
-            
-                script{
                     if (TUT == 1)
                         {
                         echo "TUT OK"
@@ -23,6 +21,5 @@ pipeline {
                                     echo "Build"
                                 }
                         }
-                  }
         }
 }
