@@ -1,19 +1,15 @@
+def ifTUT = 'Y'
+
 pipeline {
 
 agent any
     stages {
-        stage('Example Build') {
-            steps {
-                echo 'Hello World'
-            }
+        stage('Example') {
+        if (ifTUT == 'Y') {
+            echo 'OK'
+        } else {
+            echo 'Not OK'
         }
-        stage('Example Deploy') {
-            when {
-                triggeredBy "SCMTrigger"
-            }
-            steps {
-                echo 'Deploying'
-            }
-        }
+    }
     }
 }
